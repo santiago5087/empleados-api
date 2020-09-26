@@ -1,6 +1,15 @@
 const Empleado = require('../models/empleado');
 
-exports.empleadosCreatePost = (req, res) => {
+exports.empleadosGetAll = (req, res) => {
+  Empleado.find()
+  .then((emps) => {
+    res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(emps);
+  })
+  .catch((err) => console.log(err));
+}
+
+exports.empleadosCreatePost = (req, res, next) => {
   // Se desglosa la petición de esta manera para facilitar la lectura y entendimiento del código
   var id = req.body.id;
   var name = req.body.name;
@@ -13,8 +22,11 @@ exports.empleadosCreatePost = (req, res) => {
 
   var empleadoNuevo = new Empleado({ id, name, contractTypeName, roleId, roleName, roleDescription,
                                     hourlySalary, monthlySalary});
-  Empleado.add(empleadoNuevo, (err, emp) => {
-    if (err) console.log(err);  
-    else console.log(emp);
-  });
+  Empleado.create(empleadoNuevo)
+  .then((emp) => {
+    res.setHeader('Content-Type', 'application/json');
+    // Respondemos con el empleado creado
+    res.status(200).json(emp);
+  })
+  .catch((err) => console.log(err));
 }
