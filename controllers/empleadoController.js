@@ -1,7 +1,17 @@
 const Empleado = require('../models/empleado');
 
 function calcularSalarioAnual(emp) {
-  var empConSalario = { empleado: emp, salarioAnual: 0 };
+  var empConSalario = { 
+    id: emp.id,
+    name: emp.name,
+    contractTypeName: emp.contractTypeName,
+    roleId: emp.roleId,
+    roleName: emp.roleName,
+    roleDescription: emp.roleDescription,
+    hourlySalary: emp.hourlySalary,
+    monthlySalary: emp.monthlySalary 
+    };
+    
   if (emp.contractTypeName == "HourlySalaryEmployee") {
     empConSalario.salarioAnual = 120 * emp.hourlySalary * 12;
 
