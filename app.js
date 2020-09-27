@@ -7,10 +7,14 @@ var cors = require('cors');
 
 var empleadosRouter = require('./routes/empleados');
 
-// Conexión a la BD
+// Conexión a la BD 
 require("./config/db-connection");
 
 var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 // Permite peticiones de todos los dominios
 app.use(cors());  
