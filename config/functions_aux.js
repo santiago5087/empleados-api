@@ -11,12 +11,12 @@ exports.calcularSalarioAnual = (emp) => {
     };
 
   if (emp.contractTypeName == "HourlySalaryEmployee") {
-    empConSalario.salarioAnual = 120 * emp.hourlySalary * 12;
+    empConSalario.annualSalary = 120 * emp.hourlySalary * 12;
 
     // Se pone 'else' directamente porque se tiene la restricción en el esquema del empleado de 
     // que un tipo de contrato TIENE que ser igual a "HourlySalaryEmployee" o a "MonthlySalaryEmployee"
   } else {  
-    empConSalario.salarioAnual = emp.monthlySalary * 12;
+    empConSalario.annualSalary = emp.monthlySalary * 12;
   }
   return empConSalario;
 }

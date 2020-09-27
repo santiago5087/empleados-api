@@ -12,7 +12,7 @@ exports.empleadosGetAll = (req, res) => {
       res.status(200).json({ success: true, data: emps, msg: "Empleados encontrados exitosamente!" });
       
     } else {
-      res.status(200).json({ success: true, data: [], msg: "No se encontraron empleados" });
+      res.status(200).json({ success: true, data: [], msg: "No hay empleados registrados" });
     }
   })
   .catch((err) => {
