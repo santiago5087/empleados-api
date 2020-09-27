@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+// No se pone el salario anual ya que es un cálculo que se realiza a partir de los datos que hay
+// en la BD y es innecesario almacenarlo
 var empleadoSchema = new Schema({
   id: {
     type: Number,
