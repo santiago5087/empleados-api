@@ -1,27 +1,5 @@
 const Empleado = require('../models/empleado');
-
-function calcularSalarioAnual(emp) {
-  var empConSalario = { 
-    id: emp.id,
-    name: emp.name,
-    contractTypeName: emp.contractTypeName,
-    roleId: emp.roleId,
-    roleName: emp.roleName,
-    roleDescription: emp.roleDescription,
-    hourlySalary: emp.hourlySalary,
-    monthlySalary: emp.monthlySalary 
-    };
-    
-  if (emp.contractTypeName == "HourlySalaryEmployee") {
-    empConSalario.salarioAnual = 120 * emp.hourlySalary * 12;
-
-    // Se pone 'else' directamente porque se tiene la restricción en el esquema del empleado de 
-    // que un tipo de contrato TIENE que ser igual a "HourlySalaryEmployee" o a "MonthlySalaryEmployee"
-  } else {  
-    empConSalario.salarioAnual = emp.monthlySalary * 12;
-  }
-  return empConSalario;
-}
+const { calcularSalarioAnual } = require('../config/functions_aux');
 
 exports.empleadosGetAll = (req, res) => {
   Empleado.find()
@@ -32,7 +10,7 @@ exports.empleadosGetAll = (req, res) => {
       // Calcula el salario anual para todos los empleados
       emps = emps.map((emp) => calcularSalarioAnual(emp));
       res.status(200).json({ success: true, data: emps, msg: "Empleados encontrados exitosamente!" });
-
+      
     } else {
       res.status(200).json({ success: true, data: [], msg: "No se encontraron empleados" });
     }
@@ -52,7 +30,7 @@ exports.empleadosGetOne = (req, res) => {
     if (emp) {
       emp = calcularSalarioAnual(emp);
       res.status(200).json({ success: true, data: emp, msg: "Empleado encontrado exitosamente!" });
-
+      
     } else {
       res.status(200).json({ success: false, data: null, msg: "Empleado no encontrado" });
     }
@@ -76,8 +54,8 @@ exports.empleadosCreatePost = (req, res) => {
   var monthlySalary = req.body.monthlySalary;
 
   var empleadoNuevo = new Empleado({ id, name, contractTypeName, roleId, roleName, roleDescription,
-                                    hourlySalary, monthlySalary});
-  Empleado.create(empleadoNuevo)
+    hourlySalary, monthlySalary});
+    Empleado.create(empleadoNuevo)
   .then((emp) => {
     res.setHeader('Content-Type', 'application/json');
     // Respondemos con el empleado creado
@@ -108,4 +86,5 @@ exports.empleadosDeleteOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
   });
+  
 }
