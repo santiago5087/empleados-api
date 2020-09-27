@@ -1,7 +1,6 @@
 const Empleado = require('../models/empleado');
 
 function calcularSalarioAnual(emp) {
-  console.log("Entré!!!")
   var empConSalario = { empleado: emp, salarioAnual: 0 };
   if (emp.contractTypeName == "HourlySalaryEmployee") {
     empConSalario.salarioAnual = 120 * emp.hourlySalary * 12;
@@ -31,7 +30,7 @@ exports.empleadosGetAll = (req, res) => {
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err.errors });
+    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
   });
 }
 
@@ -45,13 +44,13 @@ exports.empleadosGetOne = (req, res) => {
       res.status(200).json({ success: true, data: emp, msg: "Empleado encontrado exitosamente!" });
 
     } else {
-      res.status(200).json({ success: true, data: null, msg: "Empleado no encontrado" });
+      res.status(200).json({ success: false, data: null, msg: "Empleado no encontrado" });
     }
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err.errors });
+    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
   });
 }
 
@@ -72,12 +71,13 @@ exports.empleadosCreatePost = (req, res) => {
   .then((emp) => {
     res.setHeader('Content-Type', 'application/json');
     // Respondemos con el empleado creado
+    emp = calcularSalarioAnual(emp);
     res.status(200).json({ success: true, data: emp, msg: "Empleado creado exitosamente!" });
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err.errors });
+    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
   });
 }
 
@@ -86,11 +86,16 @@ exports.empleadosDeleteOne = (req, res) => {
   Empleado.findOneAndDelete({ id })
   .then((emp) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json({ success: true, data: emp, msg: "Empleado eliminado exitosamente!" });
+    if (emp) {
+      emp = calcularSalarioAnual(emp);
+      res.status(200).json({ success: true, data: emp, msg: "Empleado eliminado exitosamente!" });
+    } else {
+      res.status(200).json({ success: false, data: null, msg: "Empleado no encontrado" });
+    }
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err.errors });
+    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
   });
 }
