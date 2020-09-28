@@ -2,7 +2,7 @@ const Empleado = require('../models/empleado');
 const { calcularSalarioAnual } = require('../config/functions_aux');
 
 exports.empleadosGetAll = (req, res) => {
-  Empleado.find()
+  Empleado.find({})
   .then((emps) => {
     res.setHeader('Content-Type', 'application/json');
 
@@ -84,7 +84,7 @@ exports.empleadosDeleteOne = (req, res) => {
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "An error has occurred", error: err });
+    res.status(403).json({ success: false, data: null, msg: "You must enter an employee ID", error: err });
   });
   
 }

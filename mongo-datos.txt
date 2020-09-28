@@ -1,0 +1,37 @@
+// Usar la BD empleados-bd, se crea si no existe 
+use empleados-bd
+
+// Insertar empleados
+db.empleados.insertMany(
+[
+  {
+    "id": 1,
+    "name": "Juan",
+    "contractTypeName": "HourlySalaryEmployee",
+    "roleId": 1,
+    "roleName": "Administrator",
+    "roleDescription": null,
+    "hourlySalary": 60000,
+    "monthlySalary": 80000
+  },
+  {
+    "id": 2,
+    "name": "Sebastian",
+    "contractTypeName": "MonthlySalaryEmployee",
+    "roleId": 2,
+    "roleName": "Contractor",
+    "roleDescription": null,
+    "hourlySalary": 60000,
+    "monthlySalary": 80000
+  },
+  {
+    "id": 3,
+    "name": "Santiago",
+    "contractTypeName": "MonthlySalaryEmployee",
+    "roleId": 2,
+    "roleName": "Contractor",
+    "roleDescription": "Developer",
+    "hourlySalary": 65000,
+    "monthlySalary": 90000
+  }
+])
