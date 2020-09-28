@@ -28,6 +28,7 @@ afterEach((done) => {
 });
 
 describe("Empleados API", () => {
+  // Acá probaremos el funcionamiento del método que recupera todos los empleados de la BD
   describe("GET EMPLEADOS /", () => {
       it("Status 200", (done) => {
           //Verificamos que la BD está vacía

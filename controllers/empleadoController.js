@@ -9,16 +9,16 @@ exports.empleadosGetAll = (req, res) => {
     if (emps.length > 0) {
       // Calcula el salario anual para todos los empleados
       emps = emps.map((emp) => calcularSalarioAnual(emp));
-      res.status(200).json({ success: true, data: emps, msg: "Empleados encontrados exitosamente!" });
+      res.status(200).json({ success: true, data: emps, msg: "Employees found successfully!" });
       
     } else {
-      res.status(200).json({ success: true, data: [], msg: "No hay empleados registrados" });
+      res.status(200).json({ success: true, data: [], msg: "There aren't registered employees" });
     }
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
+    res.status(403).json({ success: false, data: null, msg: "An error has occurred", error: err });
   });
 }
 
@@ -29,16 +29,16 @@ exports.empleadosGetOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     if (emp) {
       emp = calcularSalarioAnual(emp);
-      res.status(200).json({ success: true, data: emp, msg: "Empleado encontrado exitosamente!" });
+      res.status(200).json({ success: true, data: emp, msg: "Employee found successfully!" });
       
     } else {
-      res.status(200).json({ success: false, data: null, msg: "Empleado no encontrado" });
+      res.status(200).json({ success: false, data: null, msg: "Employee not found" });
     }
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
+    res.status(403).json({ success: false, data: null, msg: "An error has occurred", error: err });
   });
 }
 
@@ -60,12 +60,12 @@ exports.empleadosCreatePost = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     // Respondemos con el empleado creado
     emp = calcularSalarioAnual(emp);
-    res.status(200).json({ success: true, data: emp, msg: "Empleado creado exitosamente!" });
+    res.status(200).json({ success: true, data: emp, msg: "Employee created successfully!" });
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
+    res.status(403).json({ success: false, data: null, msg: "An error has occurred", error: err });
   });
 }
 
@@ -76,15 +76,15 @@ exports.empleadosDeleteOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     if (emp) {
       emp = calcularSalarioAnual(emp);
-      res.status(200).json({ success: true, data: emp, msg: "Empleado eliminado exitosamente!" });
+      res.status(200).json({ success: true, data: emp, msg: "Employee deleted successfully!" });
     } else {
-      res.status(200).json({ success: false, data: null, msg: "Empleado no encontrado" });
+      res.status(200).json({ success: false, data: null, msg: "Employee not found" });
     }
   })
   .catch((err) => {
     console.log(err);
     res.setHeader('Content-Type', 'application/json');
-    res.status(403).json({ success: false, data: null, msg: "Ha ocurrido un error", error: err });
+    res.status(403).json({ success: false, data: null, msg: "An error has occurred", error: err });
   });
   
 }
