@@ -3,6 +3,8 @@
 ## Instrucciones:
 Crear una copia del proyecto en su equipo y abrirla con VS code, crear una terminal integrada y pararse en la carpeta raíz del proyecto.<br><br>
 
+Primero que todo, en la consola de MongoDB, ejecutar los comandos que se encuentran en el archivo "mongo-datos.txt" que corresponden a los datos iniciales de la BD. <br><br>
+
 Ejecutar el comando "npm install" para instalar todas los paquetes y dependencias del proyecto.<br><br>
 
 - Para correr la API en modo desarrollador (muestra registros de peticiones por consola, etc.) ingresar el siguiente comando: "npm run dev" <br>
