@@ -5,13 +5,9 @@ Crear una copia del proyecto en su equipo y abrirla con VS code, crear una termi
 
 Ejecutar el comando "npm install" para instalar todas los paquetes y dependencias del proyecto.<br><br>
 
-Para correr la API en modo desarrollador (muestra registros de peticiones por consola, etc.) ingresar el siguiente comando:<br>
-- "npm run dev" <br>
-Para correr la API normalmente ingresar el siguiente comando:<br>
-- "npm start"
-Para ejecutar la prueba de unidad (unit test) se ejecuta el siguiente comando **(la API debe de estar corriendo en otra terminal)**:<br>
-- "npm test"
-<br>
+- Para correr la API en modo desarrollador (muestra registros de peticiones por consola, etc.) ingresar el siguiente comando: "npm run dev" <br>
+- Para correr la API normalmente ingresar el siguiente comando: "npm start" <br>
+- Para ejecutar la prueba de unidad (unit test) se ejecuta el siguiente comando **(la API debe de estar corriendo en otra terminal)**: "npm test" <br>
 <br>
 
 URL base la API: http://localhost:3000 <br><br>
